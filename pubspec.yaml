@@ -15,11 +15,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   path_provider:
-  flutter_share:
   flutter_staggered_grid_view:
   cached_network_image:
   video_player:
-  flutter_file_manager: ^0.2.0
 
 dev_dependencies:
   flutter_test:
