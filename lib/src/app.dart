@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:path_provider_android/path_provider_android.dart';
 
 import 'sample_feature/sample_item_details_view.dart';
 import 'sample_feature/sample_item_list_view.dart';
@@ -95,7 +94,7 @@ class MyApp extends StatelessWidget {
   }
 
   Future<String> getHomeDirectoryPath() async {
-    final directory = await PathProviderAndroid().getDownloadsPath();
+    final directory = await PathProviderAndroid().getApplicationDocumentsPath();
     return directory!;
   }
 }
