@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:path_provider/path_provider.dart' as pt;
 
 import 'sample_feature/sample_item_details_view.dart';
 import 'sample_feature/sample_item_list_view.dart';
@@ -39,24 +38,6 @@ class MyApp extends StatelessWidget {
                   // background.
                   restorationScopeId: 'app',
 
-                  // Provide the generated AppLocalizations to the MaterialApp. This
-                  // allows descendant Widgets to display the correct translations
-                  // depending on the user's locale.
-                  localizationsDelegates: const [
-                    GlobalMaterialLocalizations.delegate,
-                    GlobalWidgetsLocalizations.delegate,
-                    GlobalCupertinoLocalizations.delegate,
-                  ],
-                  supportedLocales: const [
-                    Locale('en', ''), // English, no country code
-                  ],
-
-                  // Use AppLocalizations to configure the correct application title
-                  // depending on the user's locale.
-                  //
-                  // The appTitle is defined in .arb files found in the localization
-                  // directory.
-
                   // Define a light and dark color theme. Then, read the user's
                   // preferred ThemeMode (light, dark, or system default) from the
                   // SettingsController to display the correct theme.
@@ -94,7 +75,7 @@ class MyApp extends StatelessWidget {
   }
 
   Future<String> getHomeDirectoryPath() async {
-    final directory = await PathProviderAndroid().getApplicationDocumentsPath();
-    return directory!;
+    final directory = await pt.getDownloadsDirectory();
+    return directory!.path;
   }
 }

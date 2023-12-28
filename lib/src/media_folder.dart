@@ -11,10 +11,10 @@ class MediaFolderView extends StatefulWidget {
   const MediaFolderView({Key? key, required this.folderPath}) : super(key: key);
 
   @override
-  _MediaFolderViewState createState() => _MediaFolderViewState();
+  MediaFolderViewState createState() => MediaFolderViewState();
 }
 
-class _MediaFolderViewState extends State<MediaFolderView> {
+class MediaFolderViewState extends State<MediaFolderView> {
   late List<File> files;
 
   @override
@@ -40,16 +40,16 @@ class _MediaFolderViewState extends State<MediaFolderView> {
       appBar: AppBar(
         title: const Text('Media Folder'),
       ),
-      body: files!.isEmpty
+      body: files.isEmpty
           ? const Center(child: CircularProgressIndicator())
           : GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 2,
               ),
-              itemCount: files!.length,
+              itemCount: files.length,
               itemBuilder: (BuildContext context, int index) {
-                final file = files![index];
+                final file = files[index];
                 final extension = file.path.split('.').last.toLowerCase();
                 if (extension == 'mp4') {
                   return _buildVideoItem(file);
@@ -115,10 +115,10 @@ class _MediaFolderViewState extends State<MediaFolderView> {
 //   const MediaFolderView({Key? key, required this.folderPath}) : super(key: key);
 
 //   @override
-//   _MediaFolderViewState createState() => _MediaFolderViewState();
+//   MediaFolderViewState createState() => MediaFolderViewState();
 // }
 
-// class _MediaFolderViewState extends State<MediaFolderView> {
+// class MediaFolderViewState extends State<MediaFolderView> {
 //   late List<File> files;
 
 //   @override
