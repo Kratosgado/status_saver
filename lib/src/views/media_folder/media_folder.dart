@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 import 'package:status_saver/src/resources/route.manager.dart';
+import 'package:status_saver/src/resources/utils.dart';
 import 'package:video_player/video_player.dart';
 
 class MediaFolderView extends StatefulWidget {
@@ -34,6 +35,7 @@ class MediaFolderViewState extends State<MediaFolderView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('File Viewer'),
+        foregroundColor: Colors.white,
       ),
       body: FutureBuilder<List<FileSystemEntity>>(
         future: futureFiles,
@@ -52,19 +54,17 @@ class MediaFolderViewState extends State<MediaFolderView> {
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
                 crossAxisSpacing: 2,
+                mainAxisSpacing: 2,
               ),
               itemCount: files.length,
               itemBuilder: (context, index) {
                 final file = files[index];
                 if (file is File) {
-                  final extension = file.path.split('.').last.toLowerCase();
-                  debugPrint(extension);
-
                   return Hero(
                     tag: "${file.hashCode}",
-                    child: (extension == 'mp4')
+                    child: isVideo(file)
                         ? _buildVideoItem(file)
-                        : (extension == 'png')
+                        : isImage(file)
                             ? _buildImageItem(file)
                             : const SizedBox(),
                   );
@@ -79,7 +79,7 @@ class MediaFolderViewState extends State<MediaFolderView> {
   }
 
   Widget _buildImageItem(File file) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         Navigator.of(context).pushNamed(RouteManager.viewProfile, arguments: file);
       },
