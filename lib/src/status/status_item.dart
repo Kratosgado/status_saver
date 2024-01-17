@@ -7,7 +7,7 @@ Widget statusItem() {
         borderRadius: BorderRadius.circular(8),
         border: const Border.symmetric(
           vertical: BorderSide(
-            color: Colors.amber,
+            color: Colors.teal,
             width: 2,
           ),
           horizontal: BorderSide(
