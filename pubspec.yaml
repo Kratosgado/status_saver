@@ -16,6 +16,8 @@ dependencies:
   flutter_staggered_grid_view:
   cached_network_image:
   video_player:
+  go_router: ^13.0.1
+  shared_preferences: ^2.2.2
   
 dev_dependencies:
   flutter_test:
